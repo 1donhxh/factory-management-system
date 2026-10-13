@@ -1,0 +1,24 @@
+{
+  "machines": [
+    {
+      "id": "M001",
+      "name": "test",
+      "type": "test suv",
+      "capacity": 300.0,
+      "cost_per_hour": 150.0,
+      "status": "Maintenance",
+      "hours_operated": 0.0
+    }
+  ],
+  "products": [],
+  "employees": [],
+  "production_orders": [],
+  "maintenance_records": [],
+  "counters": {
+    "machine": 1,
+    "product": 0,
+    "employee": 0,
+    "order": 0,
+    "maintenance": 0
+  }
+}
