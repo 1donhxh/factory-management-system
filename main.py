@@ -1,13 +1,7 @@
-#test
 """
 FACTORY AUTOMATION MANAGEMENT SYSTEM — GUI EDITION
 SmartTech Manufacturing Ltd.
 Contemporary Programming Project
-
-Popups now use a pack-based layout:
-  - Title pinned to top
-  - Button bar pinned to bottom (created FIRST so it can't be pushed off)
-  - Form fills the middle and grows with the window
 """
 
 import tkinter as tk
