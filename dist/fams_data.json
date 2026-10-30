@@ -1,0 +1,14 @@
+{
+  "machines": [],
+  "products": [],
+  "employees": [],
+  "production_orders": [],
+  "maintenance_records": [],
+  "counters": {
+    "machine": 0,
+    "product": 0,
+    "employee": 0,
+    "order": 0,
+    "maintenance": 0
+  }
+}

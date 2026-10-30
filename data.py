@@ -1,6 +1,11 @@
-import json, os
+import json
+import os
+import sys
 from datetime import datetime
 
+# ============================================================
+# GLOBAL DATA STORES
+# ============================================================
 machines = []
 products = []
 employees = []
@@ -16,13 +21,31 @@ VALID_ROLES = ["Machine Operator", "Maintenance Technician",
 VALID_SHIFTS = ["Morning", "Evening", "Night"]
 VALID_MAINT_TYPES = ["Preventive", "Corrective", "Electrical", "Mechanical", "Software/Control"]
 
-SAVE_FILE = "fams_data.json"
+# ============================================================
+# FILE PATHS (Handles both .py and compiled .exe)
+# ============================================================
+# Figure out if we are running as a normal .py file or a compiled .exe
+if getattr(sys, 'frozen', False):
+    # If compiled, use the folder where the .exe lives
+    APP_DIR = os.path.dirname(sys.executable)
+else:
+    # If running from VS Code, use the folder where the script lives
+    APP_DIR = os.path.dirname(os.path.abspath(__file__))
+
+# Create the absolute path for the save file
+SAVE_FILE = os.path.join(APP_DIR, "fams_data.json")
 
 
+# ============================================================
+# PERSISTENCE FUNCTIONS
+# ============================================================
 def save_data():
     data = {
-        "machines": machines, "products": products, "employees": employees,
-        "production_orders": production_orders, "maintenance_records": maintenance_records,
+        "machines": machines, 
+        "products": products, 
+        "employees": employees,
+        "production_orders": production_orders, 
+        "maintenance_records": maintenance_records,
         "counters": counters,
     }
     with open(SAVE_FILE, "w") as f:
@@ -42,6 +65,9 @@ def load_data():
     counters.update(data.get("counters", {}))
 
 
+# ============================================================
+# HELPER FUNCTIONS
+# ============================================================
 def generate_id(prefix, counter, width=3):
     return f"{prefix}{str(counter).zfill(width)}"
 
