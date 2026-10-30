@@ -1,0 +1,25 @@
+// Factory Management System
+digraph {
+	rankdir=TB size="8,8"
+	FMS [label="Factory Management System" fillcolor=lightblue shape=folder style=filled]
+	main [label="main.py
+(Entry Point)" shape=note]
+	base [label="base.py
+(Core Logic)" shape=note]
+	data [label="data.py
+(JSON Handling)" shape=note]
+	json [label="fams_data.json
+(Database)" shape=cylinder]
+	readme [label="README.md" shape=note]
+	windows [label="windows/
+(GUI Screens)" fillcolor=lightgrey shape=folder style=filled]
+	pycache [label="__pycache__/
+(Ignored)" shape=folder style=dashed]
+	FMS -> main
+	FMS -> base
+	FMS -> data
+	FMS -> json
+	FMS -> readme
+	FMS -> windows
+	FMS -> pycache
+}
