@@ -3,7 +3,7 @@ from tkinter import ttk, messagebox
 from data import (machines, products, employees, production_orders,
     maintenance_records, counters, generate_id, now_str, find_machine,
     find_product, find_employee, VALID_STATUSES, VALID_MAINT_TYPES,
-    VALID_ROLES, VALID_SHIFTS)
+    VALID_ROLES, VALID_SHIFTS, save_data) # Added save_data
 from base import BaseWindow
 
 class AddEmployeeWindow(BaseWindow):
@@ -42,7 +42,7 @@ class AddEmployeeWindow(BaseWindow):
         employees.append({"id": eid, "first_name": first, "last_name": last,
                           "contact": contact, "role": self.role_var.get(),
                           "specialization": spec, "shift": self.shift_var.get()})
+        
+        save_data() # <--- SAVES INSTANTLY
         messagebox.showinfo("Success", f"Employee {eid} added.", parent=self)
         self.destroy()
-
-

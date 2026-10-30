@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter import ttk, messagebox
 from data import (machines, products, employees, production_orders,
     maintenance_records, counters, generate_id, now_str, find_machine,
-    find_product, find_employee, VALID_STATUSES, VALID_MAINT_TYPES)
+    find_product, find_employee, VALID_STATUSES, VALID_MAINT_TYPES, save_data) # Added save_data
 from base import BaseWindow
 
 class AddMachineWindow(BaseWindow):
@@ -52,6 +52,8 @@ class AddMachineWindow(BaseWindow):
         machines.append({"id": mid, "name": name, "type": mtype, "capacity": cap,
                          "cost_per_hour": cost, "status": self.status_var.get(),
                          "hours_operated": 0.0})
+        
+        save_data() # <--- SAVES INSTANTLY
         messagebox.showinfo("Success", f"Machine {mid} added.", parent=self)
         self.destroy()
 
@@ -88,6 +90,6 @@ class UpdateStatusWindow(BaseWindow):
             messagebox.showerror("Not Found", "Machine ID does not exist.", parent=self)
             return
         m["status"] = self.status_var.get()
+        
+        save_data() # <--- SAVES INSTANTLY
         messagebox.showinfo("Updated", f"{m['id']} status set to {m['status']}.", parent=self)
-
-

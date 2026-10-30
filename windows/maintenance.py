@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter import ttk, messagebox
 from data import (machines, products, employees, production_orders,
     maintenance_records, counters, generate_id, now_str, find_machine,
-    find_product, find_employee, VALID_STATUSES, VALID_MAINT_TYPES)
+    find_product, find_employee, VALID_STATUSES, VALID_MAINT_TYPES, save_data) # Added save_data
 from base import BaseWindow
 
 class MaintenanceWindow(BaseWindow):
@@ -69,9 +69,9 @@ class MaintenanceWindow(BaseWindow):
                                     "date": now_str(), "hours_at_service": machine["hours_operated"],
                                     "status": "Completed" if self.complete_var.get() else "In Progress"})
         machine["status"] = "Available" if self.complete_var.get() else "Maintenance"
+        
+        save_data() # <--- SAVES INSTANTLY
         messagebox.showinfo("Recorded",
                             f"Maintenance {mtid} recorded.\nMachine status: {machine['status']}",
                             parent=self)
         self.destroy()
-
-

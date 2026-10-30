@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter import ttk, messagebox
 from data import (machines, products, employees, production_orders,
     maintenance_records, counters, generate_id, now_str, find_machine,
-    find_product, find_employee, VALID_STATUSES, VALID_MAINT_TYPES)
+    find_product, find_employee, VALID_STATUSES, VALID_MAINT_TYPES, save_data) # Added save_data
 from base import BaseWindow
 
 class ProductWindow(BaseWindow):
@@ -79,14 +79,17 @@ class ProductWindow(BaseWindow):
         if existing:
             existing.update(name=name, category=cat, production_time=t,
                             material_cost=mat, selling_price=price)
+            
+            save_data() # <--- SAVES INSTANTLY
             messagebox.showinfo("Updated", f"Product {existing['id']} updated.", parent=self)
         else:
             counters["product"] += 1
             pid = generate_id("P", counters["product"], 3)
             products.append({"id": pid, "name": name, "category": cat,
                              "production_time": t, "material_cost": mat, "selling_price": price})
+                             
+            save_data() # <--- SAVES INSTANTLY
             messagebox.showinfo("Added", f"Product {pid} added.", parent=self)
+            
         self.refresh_selector()
         self.clear_form()
-
-

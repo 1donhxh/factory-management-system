@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter import ttk, messagebox
 from data import (machines, products, employees, production_orders,
     maintenance_records, counters, generate_id, now_str, find_machine,
-    find_product, find_employee, VALID_STATUSES, VALID_MAINT_TYPES)
+    find_product, find_employee, VALID_STATUSES, VALID_MAINT_TYPES, save_data) # Added save_data
 from base import BaseWindow
 
 class ProductionWindow(BaseWindow):
@@ -79,9 +79,9 @@ class ProductionWindow(BaseWindow):
                                   "operator_id": eid, "quantity": qty, "good_qty": good,
                                   "defective_qty": defective, "estimated_cost": cost,
                                   "date": now_str()})
+                                  
+        save_data() # <--- SAVES INSTANTLY
         messagebox.showinfo("Order Recorded",
                             f"Order {oid} recorded.\nEstimated Cost: ${cost:,.2f}",
                             parent=self)
         self.destroy()
-
-
